@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Pirata+One|Roboto" rel="stylesheet">
-        <link href="//cdn.muicss.com/mui-0.9.20/css/mui.min.css" rel="stylesheet" type="text/css" />
-        <link href="assets/css/style.css" rel="stylesheet">
-	</head>
-	<body>
-		<!-- Application code goes here -->
-        <div id="content-root">
-		<div class="mui-container">
-			<h1 class="header-text page-header">Eaglelore</h1>
-			<h3 class="header-text page-subheader">- Monster Generator -</h3>
-			<p>Create new exciting monsters for your RPG and generate characters to be used during your adventures.</p>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Pirata+One|Roboto" rel="stylesheet">
+    <link href="//cdn.muicss.com/mui-0.9.20/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Application code goes here -->
+    <div id="content-root">
+        <div class="mui-container">
+            <h1 class="header-text page-header">Eaglelore</h1>
+            <h3 class="header-text page-subheader">- Monster Generator -</h3>
+            <p>Create new exciting monsters for your RPG and generate characters to be used during your adventures.</p>
         </div>
         <div class="mui-container">
-			<ul class="mui-tabs__bar mui-tabs__bar--justified">
+            <ul class="mui-tabs__bar mui-tabs__bar--justified">
                 <li class="mui--is-active"><a data-mui-toggle="tab" data-mui-controls="pane-create">Skapa Monster</a></li>
                 <li><a data-mui-toggle="tab" data-mui-controls="pane-generate">Generera Monster</a></li>
             </ul>
@@ -42,7 +44,7 @@
                 <form class="mui-form">
                     <span class="mui--text-subhead">Välj ras</span>
                     <div class="mui-select">
-                        <select id="race-selector"name="race">
+                        <select id="race-selector" name="race">
                             <option>Option 1</option>
                             <option>Option 2</option>
                             <option>Option 3</option>
@@ -53,13 +55,16 @@
                 </form>
                 <section id="result-container"></section>
             </div>
-		</div>
         </div>
-		
-		<!-- Javascript refs -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="//cdn.muicss.com/mui-0.9.20/js/mui.min.js"></script>
-		<script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-        <script src="assets/js/script.js"></script>
-	</body>	
+    </div>
+
+    <!-- Javascript refs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn.muicss.com/mui-0.9.20/js/mui.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')
+    </script>
+    <script src="assets/js/script.js"></script>
+</body>
+
 </html>
