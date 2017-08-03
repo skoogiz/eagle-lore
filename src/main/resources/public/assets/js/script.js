@@ -1,19 +1,18 @@
-$(document).ready(function() {
-    console.log("JQuery ready to use...");
+$(document).ready(() => {
     $("#abilities").append(createAbility());
 
-    $("#add-ability").click(function(event) {
+    $("#add-ability").click((event) => {
         event.preventDefault();
         $("#abilities").append(createAbility());
     });
 
-    $("#generate-monster").click(function(event) {
+    $("#generate-monster").click((event) => {
         event.preventDefault();
         $("#result-container").html(createMonsterPanel($("#race-selector").val()));
     });
 });
 
-var createAbility = function() {
+const createAbility = () => {
     var ability = $(document.createElement("div"));
     $(ability).addClass("ability");
     $(ability).append(createInput("ability", "Grundegenskap"));
@@ -21,7 +20,7 @@ var createAbility = function() {
     return ability;
 };
 
-var createInput = function(name, placeholder) {
+const createInput = (name, placeholder) => {
     var textfield = $(document.createElement("div"));
     $(textfield).addClass("mui-textfield");
     var input = $(document.createElement("input"));
@@ -31,7 +30,7 @@ var createInput = function(name, placeholder) {
     return textfield;
 };
 
-var createMonsterPanel = function(text) {
+const createMonsterPanel = (text) => {
     var panel = $(document.createElement("div"));
     $(panel).addClass("mui-panel");
     var p = $(document.createElement("p"));

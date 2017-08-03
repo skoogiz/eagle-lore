@@ -39,6 +39,16 @@ body {
     margin: 1.5em 0;
 }
 
+.ability {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.ability input {
+    flex: 1 100%;
+}
+
 @media screen and (min-width: 480px) {
     #content-root {
         width: 480px;

@@ -18,7 +18,7 @@
         <div class="mui-container">
             <h1 class="header-text page-header">Eaglelore</h1>
             <h3 class="header-text page-subheader">- Monster Generator -</h3>
-            <p>Create new exciting monsters for your RPG and generate characters to be used during your adventures.</p>
+            <p>Skapa nya häftiga monster för användning I ditt rollspel. Som spelledare kan du även u kan även generera spelledarkaraktärer för att använda direkt i äventyr.</p>
         </div>
         <div class="mui-container">
             <ul class="mui-tabs__bar mui-tabs__bar--justified">
@@ -26,7 +26,7 @@
                 <li><a data-mui-toggle="tab" data-mui-controls="pane-generate">Generera Monster</a></li>
             </ul>
             <div class="mui-tabs__pane mui--is-active content-pane" id="pane-create">
-                <form class="mui-form">
+                <form class="mui-form" action="/api/monster/create" method="post">
                     <span class="mui--text-subhead">Detaljer</span>
                     <div class="mui-textfield">
                         <input type="text" placeholder="Ras" name="race">
@@ -60,10 +60,10 @@
 
     <!-- Javascript refs -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="//cdn.muicss.com/mui-0.9.20/js/mui.min.js"></script>
     <script>
         window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')
     </script>
+    <script src="//cdn.muicss.com/mui-0.9.20/js/mui.min.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 
