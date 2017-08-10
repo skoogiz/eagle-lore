@@ -1,6 +1,7 @@
 package eagle.lore.app;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 import static spark.Spark.staticFiles;
 
 public class EagleLoreServices
@@ -17,6 +18,14 @@ public class EagleLoreServices
                 " " +
                 Dices.generateValue(req.params(":dices")) +
                 "</span>");
+
+        post("/api/monster/create", (req, res) -> {
+
+            System.out.println("Race: " + req.queryParams("race"));
+
+            return "";
+        });
+
     }
 
 }
