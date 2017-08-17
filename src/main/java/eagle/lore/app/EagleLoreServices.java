@@ -1,8 +1,10 @@
 package eagle.lore.app;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
-import static spark.Spark.staticFiles;
+import static spark.Spark.*;
+
+import java.util.Optional;
+
+import org.json.JSONObject;
 
 public class EagleLoreServices
 {
@@ -11,13 +13,23 @@ public class EagleLoreServices
     {
         staticFiles.location("/public");
 
-        get(
-            "/roll/:ability/:dices",
-            (req, res) -> "<span>" +
-                req.params(":ability") +
-                " " +
-                Dices.generateValue(req.params(":dices")) +
-                "</span>");
+        get("/roll/:ability/:dices", (req, res) -> {
+            Optional<Integer> value = Dices.calculateValue(req.params(":dices"));
+            if (value.isPresent())
+            {
+                res.type("application/json");
+                res.status(200);
+                JSONObject result = new JSONObject();
+                result.put("ability", req.params(":ability"));
+                result.put("value", value.get());
+                return result.toString();
+            }
+            else
+            {
+                res.status(400);
+                return "";
+            }
+        });
 
         post("/api/monster/create", (req, res) -> {
 

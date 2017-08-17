@@ -1,12 +1,36 @@
 package eagle.lore.app;
 
+import java.util.Optional;
+
 public class Dices
 {
+    public static Optional<Integer> calculateValue(final String formula)
+    {
+        if (formula.matches("\\d+T\\d+"))
+        {
+            int index = formula.indexOf('T');
+            String nrOfDices = formula.substring(0, index);
+            String sidesOnDices = formula.substring(index + 1);
+
+            Dice dice = new Dice(Integer.parseInt(sidesOnDices));
+            int sum = 0;
+            for (int i = 0; i < Integer.parseInt(nrOfDices); i++)
+            {
+                sum += dice.roll();
+            }
+            return Optional.of(sum);
+        }
+        else
+        {
+            return Optional.empty();
+        }
+    }
+
     public static String generateValue(final String formula)
     {
         if (formula.matches("\\d+T\\d+"))
         {
-            int index = formula.indexOf("T");
+            int index = formula.indexOf('T');
             String nrOfDices = formula.substring(0, index);
             String sidesOnDices = formula.substring(index + 1);
 
