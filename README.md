@@ -18,3 +18,6 @@ Here you take a given template and generates the stats and get a playable monste
 [JQuery](https://jquery.com), my goto javascript library.
 
 [MUI](https://www.muicss.com), a lightweight CSS framework for making the small html snippets looking somewhat presentable.
+
+### Test
+[REST Assured](http://rest-assured.io/), framework for testing and validating REST services.
