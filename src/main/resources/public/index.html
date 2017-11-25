@@ -26,10 +26,10 @@
                 <li><a data-mui-toggle="tab" data-mui-controls="pane-generate">Generera Monster</a></li>
             </ul>
             <div class="mui-tabs__pane mui--is-active content-pane" id="pane-create">
-                <form class="mui-form" action="/api/monster/create" method="post">
+                <form id="create-monster-form" class="mui-form" action="/api/monster/create" method="post">
                     <span class="mui--text-subhead">Detaljer</span>
                     <div class="mui-textfield">
-                        <input type="text" placeholder="Ras" name="race">
+                        <input type="text" placeholder="Ras" name="race" required="true" />
                     </div>
                     <div class="mui-textfield">
                         <textarea placeholder="Beskrivning" name="description"></textarea>
