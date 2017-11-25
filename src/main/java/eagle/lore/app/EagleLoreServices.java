@@ -3,8 +3,6 @@ package eagle.lore.app;
 import static spark.Spark.*;
 
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.json.JSONObject;
 
@@ -30,15 +28,7 @@ public class EagleLoreServices {
 
         post("/api/monster/create", MonsterController.create);
 
-    }
-
-    public static String getAbility(String key) {
-        Pattern pattern = Pattern.compile("^abilities\\[(.*)\\]$");
-        Matcher matcher = pattern.matcher(key);
-        if (matcher.find()) {
-            return matcher.group(1);
-        }
-        return key;
+        get("/api/monster/fetchAll", MonsterController.fetchAll);
     }
 
 }
