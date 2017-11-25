@@ -28,7 +28,7 @@ public class EagleLoreServices {
             }
         });
 
-        post("/api/monster/create", (req, res) -> MonsterController.create);
+        post("/api/monster/create", MonsterController.create);
 
     }
 

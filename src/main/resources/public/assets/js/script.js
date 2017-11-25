@@ -24,7 +24,6 @@ $(document).ready(() => {
             type: "POST",
             url: req.url,
             data: JSON.stringify(req.payload),
-            success: function(data) { showSnackbar("Success"); },
             contentType: "application/json",
             dataType: 'json'
         });

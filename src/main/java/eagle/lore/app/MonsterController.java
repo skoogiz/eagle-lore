@@ -15,6 +15,6 @@ public class MonsterController {
         for (String ability : JSONObject.getNames(abilities)) {
             System.out.println("[ability:" + ability + "] > " + abilities.get(ability));
         }
-        return "";
+        return "Done!";
     };
 }
