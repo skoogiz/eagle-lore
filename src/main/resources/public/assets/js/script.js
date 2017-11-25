@@ -20,17 +20,18 @@ $(document).ready(() => {
             }
         };
         console.log("Create monster request", req);
-        var posting = $.ajax({
+        $.ajax({
             type: "POST",
             url: req.url,
             data: JSON.stringify(req.payload),
             contentType: "application/json",
-            dataType: 'json'
-        });
-
-        // Put the results in a div
-        posting.done(function(data) {
-            showSnackbar("Nytt monster skapat");
+            dataType: 'json',
+            statusCode: {
+                200: function() {
+                    showSnackbar("Nytt monster skapat");
+                    resetForm();
+                }
+            }
         });
     });
 
@@ -49,12 +50,6 @@ const getAbilitiesArray = () => {
             ...abilities,
             [ability.find( ":input[name='ability']" ).val()]: ability.find( ":input[name='dices']" ).val()
         };
-        /*
-        abilities.push({
-            ability: ability.find( ":input[name='ability']" ).val(),
-            dices: ability.find( ":input[name='dices']" ).val()
-        });
-        */
     });
     return abilities;
 };
@@ -136,4 +131,9 @@ const showSnackbarText = (text) => {
     var span = $(document.createElement("span"));
     $(span).text(text);
     $(snack).html(span);
+};
+
+const resetForm = () => {
+    $(MONSTER_FORM)[0].reset();
+    $("#abilities").empty().append(createAbility());
 };
