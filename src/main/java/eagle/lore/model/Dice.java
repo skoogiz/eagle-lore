@@ -1,7 +1,7 @@
 /**
  * 
  */
-package eagle.lore.app;
+package eagle.lore.model;
 
 import java.util.Random;
 import java.util.function.Function;

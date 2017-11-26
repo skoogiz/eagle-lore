@@ -6,9 +6,15 @@ import java.util.Optional;
 
 import org.json.JSONObject;
 
+import eagle.lore.function.Dices;
+import eagle.lore.model.helper.MonsterHelper;
+
 public class EagleLoreServices {
 
     public static void main(String[] args) {
+
+        MonsterHelper.initStore();
+
         staticFiles.location("/public");
 
         get("/roll/:ability/:dices", (req, res) -> {

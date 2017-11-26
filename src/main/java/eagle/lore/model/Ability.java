@@ -2,7 +2,7 @@ package eagle.lore.model;
 
 import java.util.Optional;
 
-import eagle.lore.app.Dices;
+import eagle.lore.function.Dices;
 
 public interface Ability {
     String getKey();
@@ -12,6 +12,10 @@ public interface Ability {
     default int generateValue() {
         Optional<Integer> value = Dices.calculateValue(getFormula());
         return value.isPresent() ? value.get() : -1;
+    }
+
+    static Ability create(final String key, final DiceFormula formula) {
+        return create(key, formula.toString());
     }
 
     static Ability create(final String key, final String formula) {
