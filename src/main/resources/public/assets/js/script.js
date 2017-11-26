@@ -1,7 +1,8 @@
 const MONSTER_FORM = "#create-monster-form";
 
 $(document).ready(() => {
-    $("#abilities").append(createAbility());
+    createForm();
+    fetchMonsters();
 
     $("#add-ability").click((event) => {
         event.preventDefault();
@@ -30,6 +31,7 @@ $(document).ready(() => {
                 200: function() {
                     showSnackbar("Nytt monster skapat");
                     resetForm();
+                    fetchMonsters();
                 }
             }
         });
@@ -37,8 +39,17 @@ $(document).ready(() => {
 
     $("#generate-monster").click((event) => {
         event.preventDefault();
-        $("#result-container").html(createMonsterPanel($("#race-selector").val()));
+        const selected = $("#race-selector").find("option:selected");
+        const data = selected.data('monster'); 
+        $("#result-container").html(renderMonsterPanel(data));
         showSnackbar("Nytt monster genererat");
+    });
+    
+    $("#race-selector").change((event) => {
+        event.preventDefault();
+        const selected = $("#race-selector").find("option:selected");
+        const data = selected.data('monster'); 
+        $("#result-container").html(renderMonsterPanel(data));
     });
 });
 
@@ -71,6 +82,24 @@ const createAbility = () => {
     return ability;
 };
 
+const createRaceInput = () => {
+    var input = $(document.createElement("input"));
+    $(input)
+        .attr("type", "text")
+        .attr("placeholder", "Ras")
+        .attr("name", "race")
+        .attr("required", true);
+    $("#race").append(input);
+};
+
+const createDescriptionInput = () => {
+    var input = $(document.createElement("textarea"));
+    $(input)
+        .attr("placeholder", "Beskrivning")
+        .attr("name", "description")
+    $("#description").append(input);
+};
+
 const createInput = ({name, placeholder, pattern, required = false}) => {
     var textfield = $(document.createElement("div"));
     $(textfield).addClass("mui-textfield");
@@ -83,15 +112,6 @@ const createInput = ({name, placeholder, pattern, required = false}) => {
     if (pattern) $(input).attr("pattern", pattern);
     $(textfield).append(input);
     return textfield;
-};
-
-const createMonsterPanel = (text) => {
-    var panel = $(document.createElement("div"));
-    $(panel).addClass("mui-panel");
-    var p = $(document.createElement("p"));
-    $(p).text(text);
-    $(panel).append(p);
-    return panel;
 };
 
 const addSnackbar = (parent) => {
@@ -133,7 +153,70 @@ const showSnackbarText = (text) => {
     $(snack).html(span);
 };
 
+const createForm = () => {
+    createRaceInput();
+    createDescriptionInput();
+    $("#abilities").append(createAbility());
+};
+
 const resetForm = () => {
-    $(MONSTER_FORM)[0].reset();
-    $("#abilities").empty().append(createAbility());
+    $("#race").empty();
+    $("#description").empty();
+    $("#abilities").empty();
+    createForm();
+};
+
+/* Populate monster select */
+const renderOptions = (data) => {
+    let sel = $("#race-selector");
+    sel.empty();
+    $.each(data, function(index, value) {
+        var option = $(document.createElement("option"));
+        $(option)
+            .val(index)
+            .text(value.race)
+            .data("monster", value);
+        sel.append(option);
+    });
+};
+
+const renderMonsterPanel = (data) => {
+    var panel = $(document.createElement("div"));
+    $(panel).addClass("mui-panel");
+    var p = $(document.createElement("p"));
+    var heading = $(document.createElement("div"));
+    $(heading).addClass("mui--text-title").text(data.race);
+    var body = $(document.createElement("div"));
+    $(body).addClass("mui--text-body1").text(data.description);
+    var table = $(document.createElement("table"));
+    $(table).addClass("mui-table").addClass("mui-table--bordered");
+    var tableHead = $(document.createElement("thead"));
+    var tableHeadRow = $(document.createElement("tr"));
+    var tableHeadCellKey = $(document.createElement("th"));
+    $(tableHeadCellKey).text("Grundegenskaper");
+    var tableHeadCellVal = $(document.createElement("th"));
+    $(tableHeadCellVal).text("Tärningar");
+    $(tableHeadRow).append(tableHeadCellKey).append(tableHeadCellVal);
+    $(tableHead).append(tableHeadRow);
+    var tableBody = $(document.createElement("tbody"));
+    $.each(data.abilities, function(key, value) {
+        var tableBodyRow = $(document.createElement("tr"));
+        var tableBodyCellKey = $(document.createElement("th"));
+        $(tableBodyCellKey).text(key);
+        var tableBodyCellVal = $(document.createElement("th"));
+        $(tableBodyCellVal).text(value);
+        $(tableBodyRow).append(tableBodyCellKey).append(tableBodyCellVal);
+        $(tableBody).append(tableBodyRow);
+    });
+    $(table).append(tableHead).append(tableBody);
+    $(p).append(heading).append(body).append(table);
+    $(panel).append(p);
+    return panel;
+};
+
+const fetchMonsters = () => {
+    $.get("/api/monster/fetchAll", function(data) {
+        console.log("Get monsters", data);
+        renderOptions(data);
+    }, "json" );
 };

@@ -28,12 +28,8 @@
             <div class="mui-tabs__pane mui--is-active content-pane" id="pane-create">
                 <form id="create-monster-form" class="mui-form" action="/api/monster/create" method="post">
                     <span class="mui--text-subhead">Detaljer</span>
-                    <div class="mui-textfield">
-                        <input type="text" placeholder="Ras" name="race" required="true" />
-                    </div>
-                    <div class="mui-textfield">
-                        <textarea placeholder="Beskrivning" name="description"></textarea>
-                    </div>
+                    <div id="race" class="mui-textfield"></div>
+                    <div id="description" class="mui-textfield"></div>
                     <span class="mui--text-subhead">Grundegenskaper</span>
                     <div id="abilities"></div>
                     <a href="#" id="add-ability">Lägg till fler grundegenskaper &raquo;</a>
@@ -51,7 +47,9 @@
                             <option>Option 4</option>
                         </select>
                     </div>
+                    <!--
                     <button id="generate-monster" type="submit" class="mui-btn mui-btn--primary mui-btn--raised primary-button">Generera</button>
+                    -->
                 </form>
                 <section id="result-container"></section>
             </div>
