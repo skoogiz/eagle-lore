@@ -211,7 +211,26 @@ const renderMonsterPanel = (data) => {
     $(table).append(tableHead).append(tableBody);
     $(p).append(heading).append(body).append(table);
     $(panel).append(p);
+    var button = $(document.createElement("button"));
+    $(button)
+        .attr("id", "generate-monster")
+        .attr("type", "submit")
+        .addClass("mui-btn")
+        .addClass("mui-btn--primary")
+        .addClass("mui-btn--raised")
+        .addClass("primary-button")
+        .text("Generera");
+    $(button).bind("click", generateMonster(data));
+    $(panel).append(button);
     return panel;
+};
+
+const generateMonster = (data) => {
+    return (event) => {
+        event.preventDefault();
+        console.log("Generate monster", data);
+        showSnackbar("Nytt monster genererat");
+    };
 };
 
 const fetchMonsters = () => {
