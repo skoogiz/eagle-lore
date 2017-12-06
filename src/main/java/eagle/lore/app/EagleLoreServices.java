@@ -15,8 +15,8 @@ public class EagleLoreServices {
 
         MonsterHelper.initStore();
 
-        staticFiles.location("/public");
-        // staticFiles.externalLocation("/home/ask/Projects/eagle-lore/src/main/webapp/build");
+        // staticFiles.location("/public");
+        staticFiles.externalLocation("/home/ask/Projects/eagle-lore/src/main/webapp/build");
 
         get("/roll/:ability/:dices", (req, res) -> {
             Optional<Integer> value = Dices.calculateValue(req.params(":dices"));
