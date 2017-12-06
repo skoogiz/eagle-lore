@@ -1,7 +1,6 @@
 package eagle.lore.dao;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -26,7 +25,7 @@ public enum MonsterDao {
     }
 
     public Collection<Monster> getAll() {
-        return Collections.unmodifiableList(getInstance().localMonsterStore);
+        return getInstance().localMonsterStore;
     }
 
 }

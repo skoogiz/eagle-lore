@@ -1,7 +1,6 @@
 package eagle.lore.app;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,8 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import eagle.lore.dao.MonsterDao;
+import eagle.lore.json.JsonConverter;
 import eagle.lore.model.Ability;
 import eagle.lore.model.Monster;
+import eagle.lore.service.MonsterService;
 import spark.Request;
 import spark.Response;
 import spark.Route;
@@ -41,18 +42,8 @@ public class MonsterController {
         // Fetch all monster
         JSONArray result = new JSONArray();
 
-        Collection<Monster> monsters = MonsterDao.getInstance().getAll();
-        for (Monster monster : monsters) {
-            JSONObject monsterJson = new JSONObject();
-            monsterJson.put("race", monster.getRace());
-            monsterJson.put("description", monster.getDesciption());
-            JSONObject abilitiesJson = new JSONObject();
-            for (Ability ability : monster.getAbilities()) {
-                abilitiesJson.put(ability.getKey(), ability.getFormula());
-            }
-            monsterJson.put("abilities", abilitiesJson);
-            result.put(monsterJson);
-        }
+        MonsterService service = MonsterService.getInstance();
+        service.fetchAll().map(JsonConverter::toJson).subscribe(result::put);
 
         response.type("application/json");
         response.status(200);
