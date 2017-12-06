@@ -1,6 +1,8 @@
 package eagle.lore.app;
 
-import static spark.Spark.*;
+import static spark.Spark.get;
+import static spark.Spark.post;
+import static spark.Spark.staticFiles;
 
 import java.util.Optional;
 
@@ -10,6 +12,12 @@ import eagle.lore.function.Dices;
 import eagle.lore.model.helper.MonsterHelper;
 
 public class EagleLoreServices {
+
+    public enum AppConfig
+    {
+        INSTANCE;
+
+    }
 
     public static void main(String[] args) {
 
