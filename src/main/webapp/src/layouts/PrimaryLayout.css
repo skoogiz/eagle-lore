@@ -1,0 +1,27 @@
+.title {
+  font-family: 'Pirata One', cursive;
+  font-size: 32px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.navbar {
+  align-self: center;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.navbar a + a {
+  margin-left: 16px;
+}
+
+.navbar > a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+
+.navbar > a:hover {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
