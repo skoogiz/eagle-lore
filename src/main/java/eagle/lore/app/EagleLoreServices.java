@@ -11,8 +11,8 @@ import java.util.Properties;
 
 import org.json.JSONObject;
 
+import eagle.lore.dao.MonsterHelper;
 import eagle.lore.function.Dices;
-import eagle.lore.model.helper.MonsterHelper;
 
 public class EagleLoreServices {
 
