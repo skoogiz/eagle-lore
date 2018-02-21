@@ -16,55 +16,6 @@ import eagle.lore.function.Dices;
 
 public class EagleLoreServices {
 
-    public enum AppConfig {
-        INSTANCE;
-
-        private Properties props = new Properties();
-
-        private AppConfig() {
-            init();
-        }
-
-        public static AppConfig getConfig() {
-            return INSTANCE;
-        }
-
-        private void init() {
-
-            File resourceDir = new File("src/main/resources");
-
-            if (!(resourceDir.exists() && resourceDir.isDirectory())) {
-                return;
-            }
-
-            try (InputStream input = new FileInputStream(new File(resourceDir, "app.properties"))) {
-                props.load(input);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            File localConfig = new File(resourceDir, "local.properties");
-
-            if (localConfig.exists() && localConfig.isFile()) {
-                try (InputStream input = new FileInputStream(localConfig)) {
-                    Properties localProps = new Properties();
-                    localProps.load(input);
-                    props.putAll(localProps);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            props.keySet().stream().map(obj -> obj.toString()).forEach(
-                    key -> System.out.println(key + " : " + props.getProperty(key, "")));
-        }
-
-        public Optional<String> getStaticFilesPath() {
-            String staticFilesPath = props.getProperty("app.static.files.location", "");
-            return staticFilesPath.isEmpty() ? Optional.empty() : Optional.of(staticFilesPath);
-        }
-    }
-
     public static void main(String[] args) {
 
         MonsterHelper.initStore();
