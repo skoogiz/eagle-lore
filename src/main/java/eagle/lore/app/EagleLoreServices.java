@@ -2,12 +2,17 @@ package eagle.lore.app;
 
 import static spark.Spark.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Optional;
+import java.util.Properties;
 
 import org.json.JSONObject;
 
+import eagle.lore.dao.MonsterHelper;
 import eagle.lore.function.Dices;
-import eagle.lore.model.helper.MonsterHelper;
 
 public class EagleLoreServices {
 
@@ -15,8 +20,12 @@ public class EagleLoreServices {
 
         MonsterHelper.initStore();
 
-        staticFiles.location("/public");
-        // staticFiles.externalLocation("/home/ask/Projects/eagle-lore/src/main/webapp/build");
+        AppConfig config = AppConfig.getConfig();
+        if (config.getStaticFilesPath().isPresent()) {
+            config.getStaticFilesPath().ifPresent(staticFiles::externalLocation);
+        } else {
+            staticFiles.location("/public");
+        }
 
         get("/roll/:ability/:dices", (req, res) -> {
             Optional<Integer> value = Dices.calculateValue(req.params(":dices"));

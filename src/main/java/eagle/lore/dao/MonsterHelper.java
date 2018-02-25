@@ -1,8 +1,7 @@
-package eagle.lore.model.helper;
+package eagle.lore.dao;
 
 import java.util.Arrays;
 
-import eagle.lore.dao.MonsterDao;
 import eagle.lore.model.Ability;
 import eagle.lore.model.DiceFormula;
 import eagle.lore.model.Monster;
